@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bella Color</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: #1e1e2f;
+      color: #f8dce3;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #320233;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(120deg, #4a154b, #a64b65);
+      color: #fff0f5;
+    }
+
+    .hero img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .desconto-banner {
+      background: #d65b7a;
+      text-align: center;
+      color: #fff;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+      padding: 40px 20px;
+    }
+
+    .produto {
+      background-color: #2b2b3d;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .produto:hover {
+      transform: translateY(-5px);
+    }
+
+    .produto img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      border: 1px solid #444;
+    }
+
+    .produto .preco-antigo {
+      text-decoration: line-through;
+      color: #ccc;
+      margin-right: 8px;
+    }
+
+    .botao-comprar {
+      background-color: #d65b7a;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .botao-comprar:hover {
+      background-color: #e57390;
+    }
+
+    #carrinho {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      background: #2b2b3d;
+      padding: 20px;
+      border-radius: 10px;
+      color: white;
+      max-width: 300px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      z-index: 10001;
+    }
+
+    .remover-btn {
+      background: none;
+      border: none;
+      color: #ff6b6b;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-left: 10px;
+    }
+
+    .remover-btn:hover {
+      color: #ff3b3b;
+    }
+
+    footer {
+      background-color: #320233;
+      color: #fff;
+      padding: 30px 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    .botao-flutuante {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background-color: #a64b65;
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 9999;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    .whatsapp-flutuante {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 9999;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    /* Estilo para imagem padrão quando não encontrada */
+    .produto img[src*=".png"]:not([src^="http"]) {
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>BELLA COLOR</h2>
+    <nav>
+      <ul>
+        <li><a href="#">Início</a></li>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Descubra os melhores tecidos com 10% de desconto comprando pelo site!</h1>
+    <img src="img/banner-principal.jpg" alt="Tecidos da Bella Color">
+  </section>
+
+  <div class="desconto-banner">
+    💸 Promoção exclusiva: compre pelo site e ganhe 10% de desconto!
+  </div>
+
+  <section class="produtos" id="produtos"></section>
+
+  <div id="carrinho">
+    <h3>Seu Carrinho</h3>
+    <ul id="lista-carrinho"></ul>
+    <button onclick="enviarWhatsapp()">Finalizar pelo WhatsApp</button>
+  </div>
+
+  <footer id="contato">
+    <h3>Contato</h3>
+    <p>Telefone: (11) 95083-9393</p>
+    <p>Instagram: <a href="https://instagram.com/bellacolor_ofc" target="_blank" style="color: #ffb6c1;">@bellacolor_ofc</a></p>
+    <p>Email: <a href="mailto:bellacolor717@gmail.com" style="color: #ffb6c1;">bellacolor717@gmail.com</a></p>
+    <p>Endereço: Rua Silva Teles, 717</p>
+  </footer>
+
+  <a href="https://ltzhorus.github.io/Bella/" class="botao-flutuante" title="Ir para o Catálogo">📁</a>
+  <a href="https://wa.me/5511950839393" class="whatsapp-flutuante" target="_blank" title="WhatsApp">💬</a>
+
+  <script>
+    const produtos = [
+      { nome: "Crepe Seda", img: "crepe-seda.png" },
+      { nome: "GGT", img: "ggt.png" },
+      { nome: "Nuvem", img: "nuvem.png" },
+      { nome: "Duna Branco Adar", img: "duna-branco-adar.png" },
+      { nome: "Duna Off Amarelo", img: "duna-off-amarelo.png" },
+      { nome: "Duna Off Adar", img: "duna-off-adar.png" },
+      { nome: "Duna Verde", img: "duna-verde.png" },
+      { nome: "Duna Verde Claro", img: "duna-verde-claro.png" },
+      { nome: "Duna Terra", img: "duna-terra.png" },
+      { nome: "Duna Verde Escuro", img: "duna-verde-escuro.png" },
+      { nome: "Duna Creme", img: "duna-creme.png" },
+      { nome: "Malha", img: "malha.png" },
+      { nome: "Duna Verão", img: "duna-verao.png" },
+      { nome: "Tule", img: "tule.png" },
+      { nome: "Matelasse", img: "matelasse.png" },
+      { nome: "Duna Ativa Novo", img: "duna-ativa-novo.png" },
+      { nome: "Duna Branco Leandro", img: "duna-branco-leandro.png" },
+      { nome: "Tactel Ativa", img: "tactel-ativa.png" },
+      { nome: "Tactel Leandro", img: "tactel-leandro.png" },
+      { nome: "Sherpa Branco", img: "sherpa-branco.png" },
+      { nome: "Sherpa Off", img: "sherpa-off.png" },
+      { nome: "Ultrasoft", img: "ultrasoft.png" }
+    ];
+
+    const listaCarrinho = [];
+
+    function atualizarCarrinho() {
+      const lista = document.getElementById('lista-carrinho');
+      lista.innerHTML = '';
+      listaCarrinho.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `${item} <button class="remover-btn" onclick="removerItem(${index})">x</button>`;
+        lista.appendChild(li);
+      });
+    }
+
+    function adicionarAoCarrinho(nome) {
+      listaCarrinho.push(nome);
+      atualizarCarrinho();
+    }
+
+    function removerItem(index) {
+      listaCarrinho.splice(index, 1);
+      atualizarCarrinho();
+    }
+
+    function enviarWhatsapp() {
+      const texto = encodeURIComponent('Gostaria de comprar:\n' + listaCarrinho.map(p => `- ${p}`).join('\n'));
+      window.open(`https://wa.me/5511950839393?text=${texto}`);
+    }
+
+    const container = document.getElementById('produtos');
+    produtos.forEach((produto, i) => {
+      const precoOriginal = (Math.random() * 100 + 50).toFixed(2);
+      const desconto = (Math.random() * 20 + 5).toFixed(0);
+      const precoComDesconto = (precoOriginal * (1 - desconto / 100)).toFixed(2);
+
+      const card = document.createElement('div');
+      card.className = 'produto';
+      card.innerHTML = `
+        <img src="img/${produto.img}" alt="${produto.nome}" onerror="this.onerror=null; this.src='img/sem-imagem.png'; this.alt='Imagem não disponível'">
+        <h3>${produto.nome}</h3>
+        <p><span class="preco-antigo">R$ ${precoOriginal}</span><strong> R$ ${precoComDesconto}</strong></p>
+        <p style="color: #ff9090; font-weight: bold;">${desconto}% OFF</p>
+        <button class="botao-comprar" onclick="adicionarAoCarrinho('${produto.nome}')">Adicionar ao Carrinho</button>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
